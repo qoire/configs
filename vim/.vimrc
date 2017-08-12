@@ -14,6 +14,8 @@ Plugin 'lsdr/monokai'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'jistr/vim-nerdtree-tabs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -33,3 +35,14 @@ colorscheme monokai
 
 " Starting up nerd tree
 autocmd vimenter * NERDTree
+
+" Getting vim to work with ocp-indent
+" NOTE: this will only work with 4.05.0 so if you switch be careful
+set rtp^="/Users/yao/.opam/4.05.0/share/ocp-indent/vim"
+
+" Getting vim to work with merlin
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+" Run nerdtree on startup (with tabs)
+let g:nerdtree_tabs_open_on_console_startup=1
